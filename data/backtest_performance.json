@@ -1,0 +1,15 @@
+{
+  "initial_capital": 100000,
+  "final_portfolio_value": 81297.27676579432,
+  "total_return_percent": -18.70272323420568,
+  "realized_profit": 54532.74770956764,
+  "btc_holdings": 0.5656070333105219,
+  "remaining_cash": 31765.083578105005,
+  "total_trades": 63,
+  "ai_decisions": 8,
+  "rule_decisions": 55,
+  "backtest_date": "2025-11-27 02:19:13",
+  "data_period": "2025-05-31 00:00:00 to 2025-11-26 20:00:00",
+  "data_points_processed": 4317,
+  "alerts_sent": 6
+}

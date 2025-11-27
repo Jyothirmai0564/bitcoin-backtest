@@ -1,0 +1,273 @@
+2025-11-13 17:19:53,791 - __main__ - ERROR - Traceback (most recent call last):
+  File "D:\bitcoin_backtest\main.py", line 39, in main
+    config_manager = ConfigManager()
+                     ^^^^^^^^^^^^^
+NameError: name 'ConfigManager' is not defined
+
+2025-11-17 01:08:04,881 - config_manager - ERROR - Error loading config: [Errno 2] No such file or directory: 'config/config.json'
+2025-11-17 01:08:06,155 - __main__ - ERROR - Traceback (most recent call last):
+  File "D:\bitcoin_backtest\main.py", line 38, in main
+    trading_agent = BitcoinTradingAgent(config)
+  File "D:\bitcoin_backtest\trading_agent.py", line 227, in __init__
+    self._initialize_historical_data()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\bitcoin_backtest\trading_agent.py", line 254, in _initialize_historical_data
+    df = self._calculate_technical_indicators(df)
+  File "D:\bitcoin_backtest\trading_agent.py", line 302, in _calculate_technical_indicators
+    df['Price_vs_SMA20'] = (df['Close'] - df['SMA_20']) / df['SMA_20'] * 100
+    ~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jyothirmai\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\frame.py", line 4312, in __setitem__
+    self._set_item_frame_value(key, value)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Jyothirmai\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\frame.py", line 4470, in _set_item_frame_value
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Cannot set a DataFrame with multiple columns to the single column Price_vs_SMA20
+
+2025-11-17 01:16:03,356 - __main__ - INFO - Starting Bitcoin Trading System...
+2025-11-17 01:16:03,356 - config_manager - ERROR - Error loading config: [Errno 2] No such file or directory: 'config/config.json'
+2025-11-17 01:16:03,357 - trading_agent - INFO - 📊 Downloading historical BTC data from yfinance...
+2025-11-17 01:16:04,541 - trading_agent - ERROR - ❌ Failed to initialize historical data: Cannot set a DataFrame with multiple columns to the single column Price_vs_SMA20
+2025-11-17 01:16:04,541 - __main__ - ERROR - Fatal error: Cannot set a DataFrame with multiple columns to the single column Price_vs_SMA20
+2025-11-17 01:16:04,577 - __main__ - ERROR - Traceback (most recent call last):
+  File "D:\bitcoin_backtest\main.py", line 46, in main
+    trading_agent = BitcoinTradingAgent(config)
+  File "D:\bitcoin_backtest\trading_agent.py", line 227, in __init__
+    self._initialize_historical_data()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\bitcoin_backtest\trading_agent.py", line 254, in _initialize_historical_data
+    df = self._calculate_technical_indicators(df)
+  File "D:\bitcoin_backtest\trading_agent.py", line 302, in _calculate_technical_indicators
+    df.loc[:, 'Price_vs_SMA20'] = (df['Close'] - df['SMA_20']) / df['SMA_20'] * 100
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jyothirmai\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\indexing.py", line 912, in __setitem__
+    iloc._setitem_with_indexer(indexer, value, self.name)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jyothirmai\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\indexing.py", line 1858, in _setitem_with_indexer
+    self.obj[key] = value
+    ~~~~~~~~^^^^^
+  File "C:\Users\Jyothirmai\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\frame.py", line 4312, in __setitem__
+    self._set_item_frame_value(key, value)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Jyothirmai\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\frame.py", line 4470, in _set_item_frame_value
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Cannot set a DataFrame with multiple columns to the single column Price_vs_SMA20
+
+2025-11-17 01:36:49,261 - __main__ - INFO - Starting Bitcoin Trading System...
+2025-11-17 01:36:49,261 - config_manager - ERROR - Error loading config: [Errno 2] No such file or directory: 'config/config.json'
+2025-11-17 01:36:49,262 - trading_agent - INFO - 📊 Downloading historical BTC data from yfinance...
+2025-11-17 01:36:50,233 - trading_agent - ERROR - ❌ Failed to initialize historical data: ['SMA_50', 'SMA_200', 'RSI_14', 'ATR_14']
+2025-11-17 01:36:50,233 - __main__ - ERROR - Fatal error: ['SMA_50', 'SMA_200', 'RSI_14', 'ATR_14']
+2025-11-17 01:36:50,236 - __main__ - ERROR - Traceback (most recent call last):
+  File "D:\bitcoin_backtest\main.py", line 46, in main
+    trading_agent = BitcoinTradingAgent(config)
+  File "D:\bitcoin_backtest\trading_agent.py", line 228, in __init__
+    self._initialize_historical_data()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\bitcoin_backtest\trading_agent.py", line 255, in _initialize_historical_data
+    df = self._calculate_technical_indicators(df)
+  File "D:\bitcoin_backtest\trading_agent.py", line 273, in _calculate_technical_indicators
+    df = compute_indicators(df)
+  File "D:\bitcoin_backtest\indicators.py", line 52, in compute_indicators
+    df.dropna(subset=["SMA_50", "SMA_200", "RSI_14", "ATR_14"], inplace=True)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jyothirmai\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\frame.py", line 6692, in dropna
+    raise KeyError(np.array(subset)[check].tolist())
+KeyError: ['SMA_50', 'SMA_200', 'RSI_14', 'ATR_14']
+
+2025-11-17 01:40:50,959 - __main__ - INFO - Starting Bitcoin Trading System...
+2025-11-17 01:40:50,960 - config_manager - ERROR - Error loading config: [Errno 2] No such file or directory: 'config/config.json'
+2025-11-17 01:40:50,961 - trading_agent - INFO - 📊 Downloading historical BTC data from yfinance...
+2025-11-17 01:40:51,922 - trading_agent - ERROR - ❌ Failed to initialize historical data: ['SMA_50', 'SMA_200', 'RSI_14', 'ATR_14']
+2025-11-17 01:40:51,922 - __main__ - ERROR - Fatal error: ['SMA_50', 'SMA_200', 'RSI_14', 'ATR_14']
+2025-11-17 01:40:51,926 - __main__ - ERROR - Traceback (most recent call last):
+  File "D:\bitcoin_backtest\main.py", line 46, in main
+    trading_agent = BitcoinTradingAgent(config)
+  File "D:\bitcoin_backtest\trading_agent.py", line 228, in __init__
+    self._initialize_historical_data()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\bitcoin_backtest\trading_agent.py", line 255, in _initialize_historical_data
+    df = self._calculate_technical_indicators(df)
+  File "D:\bitcoin_backtest\trading_agent.py", line 273, in _calculate_technical_indicators
+    df = compute_indicators(df)
+  File "D:\bitcoin_backtest\indicators.py", line 53, in compute_indicators
+    df.dropna(subset=["SMA_50", "SMA_200", "RSI_14", "ATR_14"], inplace=True)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jyothirmai\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\frame.py", line 6692, in dropna
+    raise KeyError(np.array(subset)[check].tolist())
+KeyError: ['SMA_50', 'SMA_200', 'RSI_14', 'ATR_14']
+
+2025-11-17 01:43:05,137 - __main__ - INFO - Starting Bitcoin Trading System...
+2025-11-17 01:43:05,137 - config_manager - ERROR - Error loading config: [Errno 2] No such file or directory: 'config/config.json'
+2025-11-17 01:43:05,138 - trading_agent - INFO - 📊 Downloading historical BTC data from yfinance...
+2025-11-17 01:43:06,117 - trading_agent - INFO - Technical indicators calculated successfully
+2025-11-17 01:43:06,122 - trading_agent - ERROR - ❌ Failed to initialize historical data: 'Timestamp'
+2025-11-17 01:43:06,122 - __main__ - ERROR - Fatal error: 'Timestamp'
+2025-11-17 01:43:06,201 - __main__ - ERROR - Traceback (most recent call last):
+  File "C:\Users\Jyothirmai\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\indexes\base.py", line 3812, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7096, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Timestamp'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\bitcoin_backtest\main.py", line 46, in main
+    trading_agent = BitcoinTradingAgent(config)
+  File "D:\bitcoin_backtest\trading_agent.py", line 228, in __init__
+    self._initialize_historical_data()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\bitcoin_backtest\trading_agent.py", line 265, in _initialize_historical_data
+    self.logger.info(f"✅ Loaded {len(df)} data points from {df['Timestamp'].min()} to {df['Timestamp'].max()}")
+                                                             ~~^^^^^^^^^^^^^
+  File "C:\Users\Jyothirmai\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\frame.py", line 4112, in __getitem__
+    return self._getitem_multilevel(key)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Jyothirmai\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\frame.py", line 4170, in _getitem_multilevel
+    loc = self.columns.get_loc(key)
+  File "C:\Users\Jyothirmai\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\indexes\multi.py", line 3059, in get_loc
+    loc = self._get_level_indexer(key, level=0)
+  File "C:\Users\Jyothirmai\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\indexes\multi.py", line 3410, in _get_level_indexer
+    idx = self._get_loc_single_level_index(level_index, key)
+  File "C:\Users\Jyothirmai\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\indexes\multi.py", line 2999, in _get_loc_single_level_index
+    return level_index.get_loc(key)
+           ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Jyothirmai\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\indexes\base.py", line 3819, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Timestamp'
+
+2025-11-17 01:54:27,973 - __main__ - INFO - Starting Bitcoin Trading System...
+2025-11-17 01:54:27,973 - config_manager - ERROR - Error loading config: [Errno 2] No such file or directory: 'config/config.json'
+2025-11-17 01:54:27,974 - trading_agent - INFO - 📊 Downloading historical BTC data from yfinance...
+2025-11-17 01:54:28,918 - trading_agent - INFO - Raw yfinance data columns: [('Close', 'BTC-USD'), ('High', 'BTC-USD'), ('Low', 'BTC-USD'), ('Open', 'BTC-USD'), ('Volume', 'BTC-USD')]
+2025-11-17 01:54:28,918 - trading_agent - INFO - Raw yfinance data index: <class 'pandas.core.indexes.datetimes.DatetimeIndex'>
+2025-11-17 01:54:28,926 - trading_agent - INFO - Sample data:
+Price                              Close           High            Low           Open  Volume
+Ticker                           BTC-USD        BTC-USD        BTC-USD        BTC-USD BTC-USD
+Datetime                                                                                     
+2025-05-16 20:00:00+00:00  103622.414062  104023.039062  103552.609375  104021.898438       0
+2025-05-16 21:00:00+00:00  103608.695312  103799.179688  103539.890625  103708.406250       0
+2025-11-17 01:54:28,943 - trading_agent - INFO - Technical indicators calculated successfully
+2025-11-17 01:54:28,944 - trading_agent - INFO - Columns after reset: [('Datetime', ''), ('Close', 'BTC-USD'), ('High', 'BTC-USD'), ('Low', 'BTC-USD'), ('Open', 'BTC-USD'), ('Volume', 'BTC-USD'), ('SMA_20', ''), ('SMA_50', ''), ('SMA_200', ''), ('EMA_12', ''), ('EMA_26', ''), ('MACD', ''), ('MACD_Signal', ''), ('RSI_14', ''), ('ATR_14', ''), ('STD_20', ''), ('Upper_BB', ''), ('Lower_BB', ''), ('Market_Condition', '')]
+2025-11-17 01:54:28,946 - trading_agent - INFO - ✅ Loaded 4218 data points
+2025-11-17 01:54:28,947 - trading_agent - INFO - Final columns: [('Timestamp', ''), ('Close', 'BTC-USD'), ('High', 'BTC-USD'), ('Low', 'BTC-USD'), ('Open', 'BTC-USD'), ('Volume', 'BTC-USD'), ('SMA_20', ''), ('SMA_50', ''), ('SMA_200', ''), ('EMA_12', ''), ('EMA_26', ''), ('MACD', ''), ('MACD_Signal', ''), ('RSI_14', ''), ('ATR_14', ''), ('STD_20', ''), ('Upper_BB', ''), ('Lower_BB', ''), ('Market_Condition', '')]
+2025-11-17 01:54:28,948 - trading_agent - INFO - Date range: 2025-05-25 03:00:00+00:00 to 2025-11-16 20:00:00+00:00
+2025-11-17 01:54:28,948 - trading_agent - INFO - Gemma LLM Advisor initialized (simulated)
+2025-11-17 01:54:28,949 - trading_agent - INFO - LLM advisor initialized successfully
+2025-11-17 01:54:28,949 - trading_agent - INFO - BitcoinTradingAgent initialized with $100,000.00 capital
+2025-11-17 01:54:28,949 - __main__ - INFO - Trading system initialized successfully
+2025-11-17 01:54:28,949 - __main__ - INFO - Initial capital: $100,000.00
+2025-11-17 01:54:28,950 - __main__ - INFO - Running initial trading cycle...
+2025-11-17 01:54:28,950 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 01:54:28,951 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 01:54:28,952 - __main__ - INFO - Scheduled tasks:
+2025-11-17 01:54:28,952 - __main__ - INFO -   - Trading cycle: every 2 minutes
+2025-11-17 01:54:28,952 - __main__ - INFO - System running. Press Ctrl+C to stop.
+2025-11-17 01:56:28,954 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 01:56:28,957 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 01:58:28,959 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 01:58:28,965 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 02:00:28,967 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 02:00:28,971 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 02:02:28,974 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 02:02:28,978 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 02:04:28,981 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 02:04:28,985 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 02:06:28,987 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 02:06:28,992 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 02:08:28,995 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 02:08:29,000 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 02:10:29,003 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 02:10:29,006 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 02:12:29,008 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 02:12:29,012 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 02:14:29,014 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 02:14:29,016 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 02:16:29,018 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 02:16:29,023 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 02:18:29,026 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 02:18:29,028 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 02:20:29,031 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 02:20:29,035 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 02:22:29,038 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 02:22:29,043 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 02:24:29,045 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 02:24:29,048 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 02:26:29,050 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 02:26:29,056 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 02:28:29,059 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 02:28:29,067 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 02:30:29,070 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 02:30:29,073 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-17 02:32:29,075 - trading_agent - INFO - 🔄 Starting trading cycle 1/4218...
+2025-11-17 02:32:29,080 - trading_agent - ERROR - ❌ Error in trading cycle: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-11-19 01:49:12,427 - __main__ - INFO - Trying to run basic system...
+2025-11-19 02:03:13,174 - __main__ - INFO - Trying to run basic system...
+2025-11-19 02:07:47,058 - __main__ - INFO - Trying to run basic system...
+2025-11-19 02:17:53,617 - trading_agent - INFO - Trading Agent initialized
+2025-11-19 02:17:54,307 - trading_agent - INFO - Telegram notification sent
+2025-11-19 02:17:54,313 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-19 18:22:26,457 - trading_agent - INFO - Trading Agent initialized
+2025-11-19 18:22:27,196 - trading_agent - INFO - Telegram notification sent
+2025-11-19 18:22:27,203 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-19 18:58:57,425 - trading_agent - INFO - Trading Agent initialized
+2025-11-19 18:58:58,147 - trading_agent - INFO - Telegram notification sent
+2025-11-19 18:58:58,152 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-20 12:38:55,390 - trading_agent - INFO - Trading Agent initialized
+2025-11-20 12:38:56,087 - trading_agent - INFO - Telegram notification sent
+2025-11-20 12:38:56,092 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-20 13:33:55,863 - trading_agent - INFO - Trading Agent initialized
+2025-11-20 13:33:56,629 - trading_agent - INFO - Telegram notification sent
+2025-11-20 13:33:56,634 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-20 13:45:16,035 - trading_agent - INFO - Trading Agent initialized
+2025-11-20 13:45:16,742 - trading_agent - INFO - Telegram notification sent
+2025-11-20 13:45:16,747 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-20 13:47:37,812 - trading_agent - INFO - Trading Agent initialized
+2025-11-20 13:47:38,506 - trading_agent - INFO - Telegram notification sent
+2025-11-20 13:47:38,515 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-20 13:52:39,743 - trading_agent - INFO - Trading Agent initialized
+2025-11-20 13:52:40,425 - trading_agent - INFO - Telegram notification sent
+2025-11-20 13:52:40,432 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-20 13:55:45,739 - trading_agent - INFO - Trading Agent initialized
+2025-11-20 13:55:46,462 - trading_agent - INFO - Telegram notification sent
+2025-11-20 13:55:46,467 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-20 13:59:24,141 - trading_agent - INFO - Trading Agent initialized
+2025-11-20 13:59:24,925 - trading_agent - INFO - Telegram notification sent
+2025-11-20 13:59:24,935 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-20 14:00:50,895 - trading_agent - INFO - Trading Agent initialized
+2025-11-20 14:00:51,620 - trading_agent - INFO - Telegram notification sent
+2025-11-20 14:00:51,625 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-20 14:04:13,300 - trading_agent - INFO - Trading Agent initialized
+2025-11-20 14:04:14,058 - trading_agent - INFO - Telegram notification sent
+2025-11-20 14:04:14,064 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-20 15:32:44,766 - trading_agent - INFO - Trading Agent initialized
+2025-11-20 15:32:45,471 - trading_agent - INFO - Telegram notification sent
+2025-11-20 15:32:45,475 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-20 15:38:37,866 - trading_agent - INFO - Trading Agent initialized
+2025-11-20 15:38:38,596 - trading_agent - INFO - Telegram notification sent
+2025-11-20 15:38:38,600 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-20 15:45:58,764 - trading_agent - INFO - Trading Agent initialized
+2025-11-20 15:45:59,421 - trading_agent - INFO - Telegram notification sent
+2025-11-20 15:45:59,427 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-20 15:54:14,207 - trading_agent - INFO - Trading Agent initialized
+2025-11-20 15:54:14,912 - trading_agent - INFO - Telegram notification sent
+2025-11-20 15:54:14,922 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-20 16:07:07,360 - trading_agent - INFO - Trading Agent initialized
+2025-11-20 16:07:08,071 - trading_agent - INFO - Telegram notification sent
+2025-11-20 16:07:08,076 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-20 17:48:28,227 - trading_agent - INFO - Trading Agent initialized
+2025-11-20 17:48:28,914 - trading_agent - INFO - Telegram notification sent
+2025-11-20 17:48:28,922 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-20 20:20:42,324 - trading_agent - INFO - Trading Agent initialized
+2025-11-20 20:20:43,051 - trading_agent - INFO - Telegram notification sent
+2025-11-20 20:20:43,057 - __main__ - INFO - Press Ctrl+C to stop the system
+2025-11-20 20:45:35,062 - trading_agent - INFO - Trading Agent initialized
+2025-11-20 20:45:35,965 - trading_agent - INFO - Telegram notification sent
+2025-11-20 20:45:35,971 - __main__ - INFO - Press Ctrl+C to stop the system

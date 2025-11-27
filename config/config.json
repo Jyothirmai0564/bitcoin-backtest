@@ -1,0 +1,14 @@
+﻿{
+    "initial_cash": 100000,
+    "dca": {
+        "enabled": true,
+        "amount": 500,
+        "drop_percentage": 3.0
+    },
+    "atr_multiplier": 1.5,
+    "min_trade_usd": 10,
+    "max_trade_amount": 5000,
+    "trading_fee": 0.001,
+    "trading_interval_minutes": 2,
+    "data_source": "yfinance"
+}

@@ -1,0 +1,39 @@
+binance
+pandas
+numpy
+plotly
+ta-lib
+python-dotenv
+requests
+schedule
+python-telegram-bot
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+transformers
+torch
+fastapi
+uvicorn
+pydantic
+streamlit
+
+
+
+
+# Trading & Data
+python-binance
+ccxt
+ta-lib
+
+
+# Email & Notifications
+beautifulsoup4
+lxml
+
+# Date & Time handling
+pytz
+
+
+black
+flake8
+pytest
