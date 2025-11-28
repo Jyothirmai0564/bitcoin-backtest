@@ -2,19 +2,18 @@ name: bitcoin-trading-system
 services:
 - name: web
   github:
-    repo: your-username/bitcoin-backtest
+    repo: jyothirmai0564/bitcoin-backtest
     branch: main
     deploy_on_push: true
   
   source_dir: /
-  environment_slug: python-3.11
+  environment_slug: python-3.13
   
-  run_command: |
-    chmod +x startup.sh && ./startup.sh
+  run_command: uvicorn main:app --host 0.0.0.0 --port 8080
   
   build_command: |
     pip install -r requirements.txt
-    python -c "print('✅ Dependencies installed')"
+    
   
   http_port: 8080
   instance_count: 1
