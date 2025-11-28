@@ -1,0 +1,25 @@
+name: bitcoin-trading-system
+services:
+- name: web
+  github:
+    repo: your-username/bitcoin-backtest
+    branch: main
+    deploy_on_push: true
+  
+  source_dir: /
+  environment_slug: python-3.11
+  
+  run_command: |
+    chmod +x startup.sh && ./startup.sh
+  
+  build_command: |
+    pip install -r requirements.txt
+    python -c "print('✅ Dependencies installed')"
+  
+  http_port: 8080
+  instance_count: 1
+  instance_size_slug: basic-xs
+  
+  health_check:
+    http_path: /health
+    initial_delay_seconds: 60  # Give more time for initial backtest
