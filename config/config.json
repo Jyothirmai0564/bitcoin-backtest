@@ -1,14 +1,22 @@
-﻿{
+﻿# Create config files
+echo '{
     "initial_cash": 100000,
-    "dca": {
-        "enabled": true,
-        "amount": 500,
-        "drop_percentage": 3.0
-    },
+    "dca": {"enabled": true, "amount": 500, "drop_percentage": 3.0},
     "atr_multiplier": 1.5,
     "min_trade_usd": 10,
     "max_trade_amount": 5000,
     "trading_fee": 0.001,
     "trading_interval_minutes": 2,
-    "data_source": "yfinance"
-}
+    "data_source": "binance",
+    "backtest_period_months": 6,
+    "ai_enabled": true,
+    "risk_tolerance": "medium"
+}' > config/config.json
+
+# Create secrets template
+echo 'TELEGRAM_BOT_TOKEN=your_bot_token_here
+TELEGRAM_CHAT_ID=your_chat_id_here
+GMAIL_USER=your_email@gmail.com
+GMAIL_PASSWORD=your_app_password_here
+BINANCE_API_KEY=optional_for_trading
+BINANCE_API_SECRET=optional_for_trading' > config/secrets.env

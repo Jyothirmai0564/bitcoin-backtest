@@ -9,6 +9,9 @@ import os
 import json
 import subprocess
 import sys
+import warnings
+warnings.filterwarnings('ignore')
+
 
 # Page configuration
 st.set_page_config(

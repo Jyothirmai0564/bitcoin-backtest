@@ -1,30 +1,31 @@
 version: '3.8'
 
 services:
-  trading-app:
+  backtest-app:
     build: .
-    container_name: bitcoin-trading-app
-    volumes:
-      - ./data:/app/data           # Mount data folder
-      - ./logs:/app/logs           # Mount logs folder
-    environment:
-      - PYTHONUNBUFFERED=1
-    env_file:
-      - config/secrets.env        # Load environment variables
-    restart: unless-stopped
-
-  trading-dashboard:
-    build: .
-    container_name: trading-dashboard
-    command: streamlit run enhanced_dashboard.py --server.port=8501 --server.address=0.0.0.0
     ports:
-      - "8501:8501"               # Map host port 8501 to container port 8501
-    volumes:
-      - ./data:/app/data
+      - "8080:8080"
     environment:
-      - PYTHONUNBUFFERED=1
-    env_file:
-      - config/secrets.env
-    depends_on:
-      - trading-app
-    restart: unless-stopped
+      - ENVIRONMENT=development
+      - DATABASE_URL=sqlite:///./backtest.db
+    volumes:
+      - ./data:/home/app/data
+      - ./cache:/home/app/cache
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
+        - action: rebuild
+          path: requirements.txt
+
+  # Add Redis for caching (optional)
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:

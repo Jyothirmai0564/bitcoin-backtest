@@ -1,14 +1,25 @@
 ﻿name: bitcoin-backtest
 services:
 - name: web
-  source_dir: /
   github:
     repo: jyothirmai0564/bitcoin-backtest
     branch: main
-  dockerfile_path: Dockerfile
+
+  run_command: python -m venv venv
+               source venv/bin/activate
+               pip install -r requirements.txt
+               python optimized_backtest.py
+               gunicorn --bind 0.0.0.0:8080 bitcoin-backtest.wsgi:application
+  build_command: |
+    echo "Building application..."
+    if [ -f "requirements.txt" ]; then
+      python -m venv venv
+      source venv/bin/activate
+      pip install --upgrade pip
+      pip install -r requirements.txt
+    fi
+  
+  http_port: 8080
+  environment_slug: python
   instance_count: 1
   instance_size_slug: basic-xxs
-  http_port: 8000
-  routes:
-  - path: /
-  run_command: python optimized_backtest.py
