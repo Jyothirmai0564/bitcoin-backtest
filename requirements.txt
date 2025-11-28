@@ -32,8 +32,10 @@ lxml
 
 # Date & Time handling
 pytz
+fastapi
+uvicorn
+redis
+python-memcached
 
 
-black
-flake8
-pytest
+
