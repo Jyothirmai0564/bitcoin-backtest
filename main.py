@@ -33,15 +33,17 @@ class TradingSystem:
             with open('data/backtest_performance.json', 'r') as f:
                 self.performance_data = json.load(f)
             
-            portfolio_df = pd.read_csv('data/backtest_portfolio_history.csv')
-            self.portfolio_data = portfolio_df.iloc[-1].to_dict() if len(portfolio_df) > 0 else {}
+            if os.path.exists('data/backtest_portfolio_history.csv'):
+                portfolio_df = pd.read_csv('data/backtest_portfolio_history.csv')
+                self.portfolio_data = portfolio_df.iloc[-1].to_dict() if len(portfolio_df) > 0 else {}
             
-            trades_df = pd.read_csv('data/backtest_trading_history.csv')
-            self.trading_data = {
-                "total_trades": len(trades_df),
-                "ai_decisions": len(trades_df[trades_df['decision_source'] == 'AI']),
-                "rule_decisions": len(trades_df[trades_df['decision_source'] == 'RULES'])
-            }
+            if os.path.exists('data/backtest_trading_history.csv'):
+                trades_df = pd.read_csv('data/backtest_trading_history.csv')
+                self.trading_data = {
+                    "total_trades": len(trades_df),
+                    "ai_decisions": len(trades_df[trades_df['decision_source'] == 'AI']) if 'decision_source' in trades_df.columns else 0,
+                    "rule_decisions": len(trades_df[trades_df['decision_source'] == 'RULES']) if 'decision_source' in trades_df.columns else 0
+                }
             
         except Exception as e:
             print(f"❌ Error loading existing data: {e}")
@@ -99,6 +101,7 @@ async def dashboard():
     # Check if we have data
     has_data = bool(trading_system.performance_data)
     
+    # Build the HTML content safely
     html_content = f"""
     <!DOCTYPE html>
     <html>
@@ -123,44 +126,73 @@ async def dashboard():
             <div class="header">
                 <h1>🚀 Bitcoin AI Trading Dashboard</h1>
                 <p>6-Month Backtest Results with Gemma AI</p>
-                {"<p class='warning'>⚠️ No backtest data found. Click 'Run Backtest' below.</p>" if not has_data else ""}
+    """
+    
+    # Add warning if no data
+    if not has_data:
+        html_content += "<p class='warning'>⚠️ No backtest data found. Click 'Run Backtest' below.</p>"
+    
+    html_content += """
             </div>
             
             <div class="card">
                 <h2>⚡ System Controls</h2>
                 <button class="btn" onclick="runBacktest()">Run 6-Month Backtest</button>
                 <button class="btn" onclick="loadResults()">Refresh Results</button>
-                <div id="status">{"✅ System ready" if has_data else "❌ No data - run backtest first"}</div>
+                <div id="status">"""
+    
+    # Add status message
+    if has_data:
+        html_content += "✅ System ready"
+    else:
+        html_content += "❌ No data - run backtest first"
+    
+    html_content += """</div>
+            </div>
+    """
+    
+    # Add data cards if we have data
+    if has_data:
+        html_content += '<div class="grid">'
+        
+        # Performance card
+        total_return = trading_system.performance_data.get('total_return_percent', 0)
+        return_class = 'positive' if total_return >= 0 else 'negative'
+        
+        html_content += f"""
+            <div class="card">
+                <h3>📊 Performance</h3>
+                <p>Total Return: <span class="metric {return_class}">{total_return:.2f}%</span></p>
+                <p>Final Value: ${trading_system.performance_data.get('final_portfolio_value', 0):,.0f}</p>
+                <p>Realized Profit: ${trading_system.performance_data.get('realized_profit', 0):,.0f}</p>
             </div>
             
-            {"<div class='grid'>" + (
-                f'''
-                <div class="card">
-                    <h3>📊 Performance</h3>
-                    <p>Total Return: <span class="metric {'positive' if trading_system.performance_data.get('total_return_percent', 0) >= 0 else 'negative'}">{trading_system.performance_data.get('total_return_percent', 0):.2f}%</span></p>
-                    <p>Final Value: ${trading_system.performance_data.get('final_portfolio_value', 0):,.0f}</p>
-                    <p>Realized Profit: ${trading_system.performance_data.get('realized_profit', 0):,.0f}</p>
-                </div>
-                
-                <div class="card">
-                    <h3>💰 Portfolio</h3>
-                    <p>BTC Holdings: {trading_system.portfolio_data.get('btc_holdings', 0):.4f}</p>
-                    <p>Cash: ${trading_system.portfolio_data.get('cash', 0):,.0f}</p>
-                    <p>Total Value: ${trading_system.portfolio_data.get('total_value', 0):,.0f}</p>
-                </div>
-                
-                <div class="card">
-                    <h3>🤖 Trading Activity</h3>
-                    <p>Total Trades: {trading_system.trading_data.get('total_trades', 0)}</p>
-                    <p>AI Decisions: {trading_system.trading_data.get('ai_decisions', 0)}</p>
-                    <p>Rule Decisions: {trading_system.trading_data.get('rule_decisions', 0)}</p>
-                </div>
-                '''
-            ) if has_data else "<p>No data available. Run the backtest first.</p>") + "</div>"}
+            <div class="card">
+                <h3>💰 Portfolio</h3>
+                <p>BTC Holdings: {trading_system.portfolio_data.get('btc_holdings', 0):.4f}</p>
+                <p>Cash: ${trading_system.portfolio_data.get('cash', 0):,.0f}</p>
+                <p>Total Value: ${trading_system.portfolio_data.get('total_value', 0):,.0f}</p>
+            </div>
             
             <div class="card">
+                <h3>🤖 Trading Activity</h3>
+                <p>Total Trades: {trading_system.trading_data.get('total_trades', 0)}</p>
+                <p>AI Decisions: {trading_system.trading_data.get('ai_decisions', 0)}</p>
+                <p>Rule Decisions: {trading_system.trading_data.get('rule_decisions', 0)}</p>
+            </div>
+        """
+        
+        html_content += '</div>'
+    else:
+        html_content += '<p>No data available. Run the backtest first.</p>'
+    
+    # System information
+    last_run_str = trading_system.last_run.strftime('%Y-%m-%d %H:%M:%S') if trading_system.last_run else 'Never'
+    
+    html_content += f"""
+            <div class="card">
                 <h3>📋 System Information</h3>
-                <p>Last Run: {trading_system.last_run.strftime('%Y-%m-%d %H:%M:%S') if trading_system.last_run else 'Never'}</p>
+                <p>Last Run: {last_run_str}</p>
                 <p>Status: {"✅ Ready" if has_data else "❌ No data"}</p>
                 <p>Backtest Period: 6 months</p>
             </div>
@@ -187,6 +219,7 @@ async def dashboard():
     </body>
     </html>
     """
+    
     return HTMLResponse(content=html_content)
 
 @app.post("/run-backtest")
