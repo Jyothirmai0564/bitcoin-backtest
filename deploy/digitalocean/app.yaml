@@ -1,0 +1,14 @@
+﻿name: bitcoin-backtest
+services:
+- name: web
+  source_dir: /
+  github:
+    repo: jyothirmai0564/bitcoin-backtest
+    branch: main
+  dockerfile_path: Dockerfile
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  http_port: 8000
+  routes:
+  - path: /
+  run_command: python optimized_backtest.py
